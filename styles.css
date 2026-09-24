@@ -1,0 +1,102 @@
+:root {
+  --bg: #f4f6f6;
+  --panel: #ffffff;
+  --border: #dde3e2;
+  --text: #1c2322;
+  --muted: #62706e;
+  --accent: #0f766e;
+  --accent-hover: #0b5f59;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .05), 0 4px 16px rgba(0, 0, 0, .04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1413;
+    --panel: #161e1d;
+    --border: #26312f;
+    --text: #e4ebea;
+    --muted: #8fa19e;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 16px 32px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.hero img { border-radius: 12px; flex: none; }
+.hero h1 { margin: 0; font-size: 28px; line-height: 1.2; }
+.hero p { margin: 2px 0 0; color: var(--muted); }
+
+.status { color: var(--muted); margin-bottom: 16px; }
+.status:empty { display: none; }
+.status.error { color: #b42318; }
+
+.apps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: border-color .15s, transform .15s;
+}
+.app:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+.app h2 { margin: 0; font-size: 17px; }
+/* Hele kortet er klikkbart via lenken i tittelen. */
+.app h2 a { color: var(--text); text-decoration: none; }
+.app h2 a::after { content: ""; position: absolute; inset: 0; border-radius: 12px; }
+.app p { margin: 0; color: var(--muted); flex: 1; }
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+/* Kodelenken ligger over kortlenken, så den kan klikkes for seg. */
+.meta a { position: relative; z-index: 1; }
+
+.footer {
+  margin-top: 48px;
+  font-size: 13px;
+  color: var(--muted);
+}
