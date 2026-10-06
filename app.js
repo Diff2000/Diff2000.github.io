@@ -36,9 +36,6 @@ function render(repos) {
 
     const meta = el('div', 'meta');
     meta.append(el('span', null, `Oppdatert ${formatDate(repo.pushed_at)}`));
-    const code = el('a', null, 'Kode');
-    code.href = repo.html_url;
-    meta.append(code);
     li.append(meta);
     list.append(li);
   }
@@ -55,7 +52,7 @@ async function load() {
     if (!res.ok) throw new Error(`GitHub svarte ${res.status}`);
     const repos = (await res.json())
       .filter((r) => r.has_pages && !r.fork && !r.archived && r.name.toLowerCase() !== `${USER.toLowerCase()}.github.io`)
-      .map(({ name, description, homepage, html_url, pushed_at }) => ({ name, description, homepage, html_url, pushed_at }));
+      .map(({ name, description, homepage, pushed_at }) => ({ name, description, homepage, pushed_at }));
     render(repos);
     try { localStorage.setItem(CACHE_KEY, JSON.stringify(repos)); } catch { /* lagring er valgfritt */ }
   } catch (e) {

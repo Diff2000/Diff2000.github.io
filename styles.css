@@ -92,8 +92,6 @@ a:hover { color: var(--accent-hover); }
   font-size: 13px;
   color: var(--muted);
 }
-/* Kodelenken ligger over kortlenken, så den kan klikkes for seg. */
-.meta a { position: relative; z-index: 1; }
 
 .footer {
   margin-top: 48px;
